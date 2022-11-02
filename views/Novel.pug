@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  - var result = [{"authorName":"A.Christie","novelType":"Mysteries","pages":252},{"authorName":"Leo Tolstoy","novelType":"Comedy","pages":179},{"authorName":"G.Flynn","novelType":"Thrillers","pages":215}]
+  div.container-fluid
+     div.row
+        each item,index in result
+            div.col-sm-2(onclick=`buy(${index})`) Name: #{item["authorName"]}  <br>  Novel Type: #{item["novelType"]} <br> pages: #{item["pages"]} 
+  script.
+      function buy(index){
+         alert("you purchased item "+(index+1))
+      }
