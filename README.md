@@ -1,7 +1,6 @@
-# f2wb74RAYAVARAPU
-Render server link https://f2wb74rayavarapu.onrender.com
-Render dashboard link https://dashboard.render.com/web/srv-cddiiaqen0hmkdfe1igg/deploys/dep-cddiibien0hmkdfe1is0
-
+# f2db74RAYAVARAPU
+Render server link https://f2db74rayavarapu.onrender.com/
+Render dashboard link https://dashboard.render.com/web/srv-cdi95e4gqg4aiisfos00
 ```
 class Novel {
         String authorName;
