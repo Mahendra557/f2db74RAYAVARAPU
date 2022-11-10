@@ -4,12 +4,28 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+require('dotenv').config();
+const connectionString = process.env.MONGO_CON
+mongoose = require('mongoose');
+mongoose.connect(connectionString,
+{useNewUrlParser: true,
+useUnifiedTopology: true});
+
+
+//Get the default connection
+var db = mongoose.connection;
+//Bind connection to error event
+db.on('error', console.error.bind(console, 'MongoDB connectionerror:'));
+db.once("open", function(){
+console.log("Connection to DB succeeded")});
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var novelRouter = require('./routes/Novel');
+var NovelRouter = require('./routes/Novel');
 var gridbuildRouter = require('./routes/gridbuild');
+var resourceRouter = require('./routes/resource');
 var selectorRouter = require('./routes/selector');
-
+var Novel = require("./models/Novel");
 var app = express();
 
 // view engine setup
@@ -24,10 +40,33 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/Novel', novelRouter);
 app.use('/gridbuild', gridbuildRouter);
+app.use('/Novel', NovelRouter);
 app.use('/selector', selectorRouter);
 
+app.use('/resource', resourceRouter);
+// We can seed the collection if needed on server start
+async function recreateDB(){
+ // Delete everything
+    await Novel.deleteMany();
+    let instance1 = new Novel({authorName:"A.Christie",novelType:"Mysteries",pages:252});
+    instance1.save( function(err,doc) {
+      if(err) return console.error(err);
+      console.log("First object saved")
+      });
+    let instance2 = new Novel({authorName:"Leo Tolstoy",novelType:"Comedy",pages:179});
+    instance2.save( function(err,doc) {
+      if(err) return console.error(err);
+      console.log("second object saved")
+      });
+      let instance3 = new Novel({authorName:"G.Flynn",novelType:"Thrillers",pages:215});
+    instance3.save( function(err,doc) {
+      if(err) return console.error(err);
+      console.log("Third object saved")
+      });
+}
+let reseed = true;
+if (reseed) { recreateDB();}
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
