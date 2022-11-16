@@ -6,3 +6,23 @@ body {
 a {
   color: #00B7FF;
 }
+
+.NovelAttr { 
+  background-color: #80489C; 
+  color: white;
+  height: 30px;
+}
+
+.data {
+  border-bottom: 2px solid green;
+  height: 30px;
+  color: red;
+  margin-left: 12px;
+}
+
+.detailData {
+  border-bottom: 2px solid green;
+  height: 30px;
+  color: red;
+  margin-left: 12px;
+}

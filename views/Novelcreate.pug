@@ -1,0 +1,42 @@
+extends layout 
+ 
+block content 
+  div(class='container', style='border: 2px solid #2192FF; width: 450px;')
+    h1(style="text-align: center; color: #FF1E1E")= title 
+    br
+    div(class='container' style="text-align: center; width: 450px;")
+      form(id='NovelForm', action="/resource/Novel", method="POST") 
+        div.form-group 
+          div(class="form-group row mb-2") 
+            label.NovelAttr(for='authorName', class='col-4 col-from-label') Novel Author Name 
+            div(class='col-6' style='width: 250px;')
+              input#authorName(class='form-control form-control-sm', type='text', name='authorName') 
+        div.form-group 
+          div(class="form-group row mb-2") 
+            label.NovelAttr(for='novelType', class='col-4 col-from-label') Novel Type
+            div(class='col-6' style='width: 250px;')
+              input#novelType(class='form-control form-control-sm', type='text', name='novelType', step='any') 
+        div.form-group
+          div(class="form-group row mb-2")  
+            label.NovelAttr(for='pages', class='col-4 col-from-label') Pages
+            div(class='col-6' style='width: 250px;')
+              input#pages(class='form-control form-control-sm',  type='number', name='pages') 
+        input(class='btn btn-outline-success' type="submit" style='width: 150px; margin: 6px;') 
+ 
+  script. 
+    document.forms['NovelForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'POST', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Save succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Save failed " + error ) 
+      }); 
+    }); 

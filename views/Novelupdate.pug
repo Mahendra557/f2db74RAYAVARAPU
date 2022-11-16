@@ -1,0 +1,46 @@
+extends layout
+block content
+ div.container(style='border: 2px solid #001253; width: 450px;')
+    h1(style="text-align: center; color: red;")= title 
+    br
+    - let NovelId = toShow._id
+    - let authorName = toShow.authorName 
+    - let novelType = toShow.novelType 
+    - let pages = toShow.pages
+
+    div(class='container' style="text-align: center; width: 450px;")
+      div.row(class='mb-2') 
+        div(class='NovelAttr col-4') ID is 
+        div(class='data col-6') #{NovelId} 
+      - let actionid = "/resource/Novel/" + NovelId
+      form(id='NovelForm', action=actionid, method="PUT") 
+        div(class="form-group row mb-2") 
+            label.NovelAttr(for='authorName', class='col-4 col-from-label') Novel Name 
+            div(class='col-6' style='width: 250px;')
+              input#authorName(class='form-control', type='text', name='authorName', value=`${authorName}`) 
+        div(class="form-group row mb-2") 
+            label.NovelAttr(for='novelType', class='col-4 col-from-label') Novel Type
+            div(class='col-6' style='width: 250px;') 
+              input#novelType(class='form-control', type='text', name='novelType', step='any', value=`${novelType}`) 
+        div(class="form-group row mb-2") 
+            label.NovelAttr(for='pages', class='col-4 col-from-label') pages
+            div(class='col-6' style='width: 250px;')
+              input#pages(class='form-control' type='number', name='pages', value=`${pages}`) 
+        input(class='btn btn-success' type="submit" style='width: 150px; margin: 6px;') 
+ script.
+  document.forms['NovelForm'].addEventListener('submit', (event) => {
+   event.preventDefault();
+   // TODO do something here to show user that form is being submitted
+   fetch(event.target.action, {
+    method: 'PUT',
+    body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+   }).then((resp) => {
+    return resp.json(); // or resp.text() or whatever the server sends
+   }).then((body) => {
+    alert("Update succeded")
+   // TODO handle body
+   }).catch((error) => {
+   // TODO handle error
+    alert("Update failed " + error )
+   });
+  });

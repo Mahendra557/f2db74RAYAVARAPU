@@ -17,4 +17,6 @@ router.put('/Novel/:id', Novel_controller.Novel_update_put);
 router.get('/Novel/:id', Novel_controller.Novel_detail);
 // GET request for list of all Novel items.
 router.get('/Novel', Novel_controller.Novel_list);
+
+
 module.exports = router;

@@ -1,0 +1,23 @@
+extends layout 
+ 
+block content 
+  div(class='container', style='border: 2px solid #001253; width: 450px;')
+    h1(style="text-align: center; color: #54B435")= title 
+    br
+    - let NovelId = toShow._id 
+    - let authorName = toShow.authorName 
+    - let novelType = toShow.novelType 
+    - let pages = toShow.pages 
+    div(class='container' style="text-align: center; width: 500px;")
+      div(class='row mb-3')
+        div(class='col-3' style='color: #5F9DF7; font-weight: bold;') Novel ID 
+        div(class='NovelAttr detailData col-6' style='color: white;') #{NovelId} 
+      div(class='row mb-3')
+        div(class='col-3' style='color: #5F9DF7; font-weight: bold;') Novel Author Name
+        div(class='NovelAttr detailData col-6' style='color: white;') #{authorName} 
+      div(class='row mb-3') 
+        div(class='col-3' style='color: #5F9DF7; font-weight: bold;') Novel Type 
+        div(class='NovelAttr detailData col-6' style='color: white;') #{novelType} 
+      div(class='row mb-3')
+        div(class='col-3' style='color: #5F9DF7; font-weight: bold;') pages
+        div(class='NovelAttr detailData col-6' style='color: white;') #{pages} 
