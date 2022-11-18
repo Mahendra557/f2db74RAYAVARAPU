@@ -15,15 +15,15 @@ block content
       - let actionid = "/resource/Novel/" + NovelId
       form(id='NovelForm', action=actionid, method="PUT") 
         div(class="form-group row mb-2") 
-            label.NovelAttr(for='authorName', class='col-4 col-from-label') Novel Name 
+            label.NovelAttr(for='authorName', class='col-4 col-from-label') train name
             div(class='col-6' style='width: 250px;')
               input#authorName(class='form-control', type='text', name='authorName', value=`${authorName}`) 
         div(class="form-group row mb-2") 
-            label.NovelAttr(for='novelType', class='col-4 col-from-label') Novel Type
+            label.NovelAttr(for='novelType', class='col-4 col-from-label') train type 
             div(class='col-6' style='width: 250px;') 
               input#novelType(class='form-control', type='text', name='novelType', step='any', value=`${novelType}`) 
         div(class="form-group row mb-2") 
-            label.NovelAttr(for='pages', class='col-4 col-from-label') pages
+            label.NovelAttr(for='pages', class='col-4 col-from-label') train size 
             div(class='col-6' style='width: 250px;')
               input#pages(class='form-control' type='number', name='pages', value=`${pages}`) 
         input(class='btn btn-success' type="submit" style='width: 150px; margin: 6px;') 

@@ -19,4 +19,5 @@ router.get('/create', Novel_controllers.Novel_create_Page);
 router.get('/update', Novel_controllers.Novel_update_Page); 
 
 router.get('/delete', Novel_controllers.Novel_delete_Page);
+
 module.exports = router;
